@@ -22,5 +22,10 @@ Use attribute: class and append: true to add classes
 
 Use attribute: style and append: true to add css
 
+![Widget configuration](https://cloud.githubusercontent.com/assets/9658410/20215470/c0cb4d2c-a814-11e6-8aa6-5095b3e57513.png)
+![Custom attribute](https://cloud.githubusercontent.com/assets/9658410/20215471/c0dcee24-a814-11e6-9b16-6df2adb6181e.png)
+![Add style](https://cloud.githubusercontent.com/assets/9658410/20215472/c0e67a52-a814-11e6-9afb-9bef84dc31da.png)
+
+
 ## Known bugs
 None

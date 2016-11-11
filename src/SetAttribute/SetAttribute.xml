@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="SetAttribute.widget.SetAttribute" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>SetAttribute</name>
+    <description>The description of this widget.</description>
+
+    <icon />
+
+    <properties>
+        <property key="domQuery" type="string">
+            <caption>Dom Query</caption>
+            <category>General</category>
+            <description>The query to the nodes the attribute has to be set on</description>
+        </property>
+        <property key="attributes" type="object" isList="true" required="true">
+            <caption>Attributes</caption>
+            <category>General</category>
+            <description>The message visible within the widget.</description>
+            <properties>
+                <property key="attribute" type="string" required="true">
+                    <caption>Attribute</caption>
+                    <category>Attributes</category>
+                    <description></description>
+                </property>
+                <property key="value" type="string" required="true">
+                    <caption>Value</caption>
+                    <category>Attributes</category>
+                    <description></description>
+                </property>
+                <property key="append" type="boolean" defaultValue="false">
+                    <caption>Append</caption>
+                    <category>Attributes</category>
+                    <description>Append the value to the attribute instead of overwriting it.</description>
+                </property>
+            </properties>
+        </property>
+        
+    </properties>
+</widget>
+

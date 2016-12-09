@@ -118,10 +118,16 @@ define([
                 if(attribute.append === true){
 
                     dojoArray.forEach( nodes, dojoLang.hitch(this, function(node){
-                        var oldValue = dojoAttr.get(node, attribute.attribute);
-                        if (oldValue.indexOf(" " + attribute.value) === -1){
-                            dojoAttr.set(node, attribute.attribute, oldValue + " " + attribute.value);
+                        if (dojoAttr.has(node, attribute.attribute)) {
+                            var oldValue = dojoAttr.get(node, attribute.attribute);
+                            if (oldValue.indexOf(" " + attribute.value) === -1) {
+                                dojoAttr.set(node, attribute.attribute, oldValue + " " + attribute.value);
+                            }
+                        } else{
+                            nodes.attr(attribute.attribute, attribute.value);
+
                         }
+                        
                     }));
 
                 } else {

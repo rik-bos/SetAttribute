@@ -118,12 +118,11 @@ define([
               : dojoQuery(this.domQuery);
 
             dojoArray.forEach(this.attributes, dojoLang.hitch(this, function(attribute) {
+                if (this._contextObj && attribute.useDynamicValue && attribute.dynamicValue){
+                  attribute.value = this._contextObj.get(attribute.dynamicValue);
+                }
                 if (attribute.append === true) {
-
                     dojoArray.forEach(nodes, dojoLang.hitch(this, function(node) {
-                        if (this._contextObj && attribute.useDynamicValue && attribute.dynamicValue){
-                          attribute.value = this._contextObj.get(attribute.dynamicValue);
-                        }
                         if (dojoAttr.has(node, attribute.attribute)) {
                             var oldValue = dojoAttr.get(node, attribute.attribute);
                             if (oldValue.indexOf(" " + attribute.value) === -1) {

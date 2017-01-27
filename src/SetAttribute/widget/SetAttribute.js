@@ -124,7 +124,7 @@ define([
                 if (attribute.append === true) {
                     dojoArray.forEach(nodes, dojoLang.hitch(this, function(node) {
                         if (dojoAttr.has(node, attribute.attribute)) {
-                            var oldValue = dojoAttr.get(node, attribute.attribute);
+                            var oldValue = dojoAttr.get(node, attribute.attribute).toString(); // added toString in case it's a JS property
                             if (oldValue.indexOf(" " + attribute.value) === -1) {
                                 dojoAttr.set(node, attribute.attribute, oldValue + " " + attribute.value);
                             }

@@ -13,6 +13,11 @@
             <category>General</category>
             <description>The query to the nodes the attribute has to be set on</description>
         </property>
+         <property key="local" type="boolean" required="true" defaultValue="false">
+             <caption>Restrict to Siblings</caption>
+             <category>General</category>
+             <description>Restrict query to only siblings of this widget.</description>
+         </property>
         <property key="attributes" type="object" isList="true" required="true">
             <caption>Attributes</caption>
             <category>General</category>
@@ -23,7 +28,20 @@
                     <category>Attributes</category>
                     <description></description>
                 </property>
-                <property key="value" type="string" required="true">
+                 <property key="useDynamicValue" type="boolean" required="true" defaultValue="false">
+                     <caption>Use Dynamic Value?</caption>
+                     <category>Attributes</category>
+                     <description>Use an attribute of the context object as the value?</description>
+                 </property>
+                <property key="dynamicValue" type="attribute" required="false" isPath="optional" pathType="reference">
+                    <caption>Dynamic Value</caption>
+                    <category>Attributes</category>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="value" type="string" required="false">
                     <caption>Value</caption>
                     <category>Attributes</category>
                     <description></description>
@@ -35,7 +53,6 @@
                 </property>
             </properties>
         </property>
-        
+
     </properties>
 </widget>
-

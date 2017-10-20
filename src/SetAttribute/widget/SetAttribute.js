@@ -73,7 +73,7 @@ define([
         // mxui.widget._WidgetBase.update is called when context is changed or initialized. Implement to re-render and / or fetch data.
         update: function(obj, callback) {
             logger.debug(this.id + ".update");
-
+            // Hello World
             this._contextObj = obj;
             this._resetSubscriptions();
             this._updateRendering(callback); // We're passing the callback to updateRendering to be called after DOM-manipulation
@@ -113,13 +113,13 @@ define([
             logger.debug(this.id + "._updateRendering");
 
 
-            var nodes = this.local
-              ? this.domNode.parentElement.querySelectorAll(this.domQuery)
-              : dojoQuery(this.domQuery);
+            var nodes = this.local ?
+                this.domNode.parentElement.querySelectorAll(this.domQuery) :
+                dojoQuery(this.domQuery);
 
             dojoArray.forEach(this.attributes, dojoLang.hitch(this, function(attribute) {
-                if (this._contextObj && attribute.useDynamicValue && attribute.dynamicValue){
-                  attribute.value = this._contextObj.get(attribute.dynamicValue);
+                if (this._contextObj && attribute.useDynamicValue && attribute.dynamicValue) {
+                    attribute.value = this._contextObj.get(attribute.dynamicValue);
                 }
                 if (attribute.append === true) {
                     dojoArray.forEach(nodes, dojoLang.hitch(this, function(node) {

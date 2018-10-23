@@ -1,12 +1,11 @@
 {
   "name": "SetAttribute",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "My brand new Mendix widget",
   "license": "Apache 2",
   "author": "Rik Bos",
   "private": true,
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "del": "^2.2.2",
     "gulp": "^3.9.1",

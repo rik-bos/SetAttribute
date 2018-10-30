@@ -41,10 +41,13 @@
                         <attributeType name="String" />
                     </attributeTypes>
                 </property>
-                <property key="value" type="string" required="false">
-                    <caption>Value</caption>
-                    <category>Attributes</category>
-                    <description></description>
+                <property key="value" type="translatableString" required="false">
+                  <caption>Value</caption>
+                  <category>Attributes</category>
+                  <description></description>
+                  <translations>
+                    <translation lang="en_US">Add your message here.</translation>
+                  </translations>
                 </property>
                 <property key="append" type="boolean" defaultValue="false">
                     <caption>Append</caption>

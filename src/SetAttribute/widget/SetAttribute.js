@@ -97,15 +97,10 @@ define([
                             }
                         } else {
                             nodes.attr(attribute.attribute, attribute.value);
-
                         }
-
                     }));
-
                 } else {
-
                     nodes.attr(attribute.attribute, attribute.value);
-
                 }
             }));
 

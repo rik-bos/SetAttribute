@@ -3,7 +3,9 @@
     <clientModule name="SetAttribute" version="2.0.0" xmlns="http://www.mendix.com/clientModule/1.0/">
         <widgetFiles>
             <widgetFile path="SetAttribute/SetAttribute.xml"/>
+            <widgetFile path="SetAttribute/SetAttributeTranslatable.xml"/>
             <widgetFile path="SetAttribute/SetAttributeNoContext.xml"/>
+            <widgetFile path="SetAttribute/SetAttributeNoContextTranslatable.xml"/>
         </widgetFiles>
         <files>
             <file path="SetAttribute/widget/"/>

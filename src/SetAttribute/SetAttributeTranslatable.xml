@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<widget id="SetAttribute.widget.SetAttributeNoContext" needsEntityContext="false" xmlns="http://www.mendix.com/widget/1.0/">
-    <name>SetAttribute (No Context)</name>
+<widget id="SetAttribute.widget.SetAttributeTranslatable" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>SetAttribute (Translatable)</name>
     <description>The description of this widget.</description>
 
     <icon>
@@ -28,7 +28,7 @@
                     <category>Attributes</category>
                     <description></description>
                 </property>
-                 <!-- <property key="useDynamicValue" type="boolean" required="true" defaultValue="false">
+                 <property key="useDynamicValue" type="boolean" required="true" defaultValue="false">
                      <caption>Use Dynamic Value?</caption>
                      <category>Attributes</category>
                      <description>Use an attribute of the context object as the value?</description>
@@ -40,11 +40,14 @@
                     <attributeTypes>
                         <attributeType name="String" />
                     </attributeTypes>
-                </property> -->
-                <property key="value" type="string" required="false">
+                </property>
+                <property key="value" type="translatableString" required="false">
                   <caption>Value</caption>
                   <category>Attributes</category>
                   <description></description>
+                  <translations>
+                    <translation lang="en_US"></translation>
+                  </translations>
                 </property>
                 <property key="append" type="boolean" defaultValue="false">
                     <caption>Append</caption>

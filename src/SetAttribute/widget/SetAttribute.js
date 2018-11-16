@@ -84,29 +84,32 @@ define([
                 dojoQuery(this.domQuery, this.domNode.parentElement) :
                 dojoQuery(this.domQuery);
 
-            dojoArray.forEach(this.attributes, dojoLang.hitch(this, function (attribute) {
-                if (this._contextObj && attribute.useDynamicValue && attribute.dynamicValue) {
-                    attribute.value = this._contextObj.get(attribute.dynamicValue);
-                }
-                if (attribute.append === true) {
-                    dojoArray.forEach(nodes, dojoLang.hitch(this, function (node) {
+            dojoArray.forEach(nodes, dojoLang.hitch(this, function (node) {
+
+				dojoArray.forEach(this.attributes, dojoLang.hitch(this, function (attribute) {
+	                if (this._contextObj && attribute.useDynamicValue && attribute.dynamicValue) {
+	                    attribute.value = this._contextObj.get(attribute.dynamicValue);
+	                }
+	                if (attribute.append === true) {
                         if (dojoAttr.has(node, attribute.attribute)) {
                             var oldValue = dojoAttr.get(node, attribute.attribute).toString(); // added toString in case it's a JS property
                             if (oldValue.indexOf(" " + attribute.value) === -1) {
                                 dojoAttr.set(node, attribute.attribute, oldValue + " " + attribute.value);
                             }
                         } else {
-                            nodes.attr(attribute.attribute, attribute.value);
+							dojoAttr.set(node, attribute.attribute, attribute.value);
                         }
-                    }));
-                } else {
-                    nodes.attr(attribute.attribute, attribute.value);
-                }
+	                } else {
+	                    dojoAttr.set(node, attribute.attribute, attribute.value);
+                	}
+                }));
             }));
 
 
             // The callback, coming from update, needs to be executed, to let the page know it finished rendering
-            mendix.lang.nullExec(callback);
+			if (callback) {
+				callback();
+			}
         },
 
         _unsubscribe: function () {

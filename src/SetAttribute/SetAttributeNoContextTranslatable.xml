@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<widget id="SetAttribute.widget.SetAttributeNoContextTranslatable" needsEntityContext="false" xmlns="http://www.mendix.com/widget/1.0/">
+<widget id="SetAttribute.widget.SetAttributeNoContextTranslatable" needsEntityContext="false" offlineCapable="true" xmlns="http://www.mendix.com/widget/1.0/">
     <name>SetAttribute (No Context, Translatable)</name>
     <description>The description of this widget.</description>
 
@@ -17,6 +17,11 @@
              <caption>Restrict to Siblings</caption>
              <category>General</category>
              <description>Restrict query to only siblings of this widget.</description>
+         </property>
+         <property key="searchParents" type="boolean" required="true" defaultValue="false">
+             <caption>Restrict to Parents</caption>
+             <category>General</category>
+             <description>Restrict query to only parents of this widget (can be used in combination with Siblings).</description>
          </property>
         <property key="attributes" type="object" isList="true" required="true">
             <caption>Attributes</caption>

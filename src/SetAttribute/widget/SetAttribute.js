@@ -36,6 +36,7 @@ define([
 
     "dojo/query",
     "dojo/dom-attr",
+    "dojo/NodeList-traverse"
 ], function (declare, _WidgetBase, _TemplatedMixin, dojoArray, dojoLang, dojoQuery, dojoAttr) {
     "use strict";
 
@@ -48,6 +49,7 @@ define([
         domQuery: "",
         attributes: "",
         local: false,
+        searchParents: false,
 
         // Internal variables. Non-primitives created in the prototype are shared between all widget instances.
         _handles: null,
@@ -75,14 +77,41 @@ define([
             this._updateRendering(callback); // We're passing the callback to updateRendering to be called after DOM-manipulation
         },
 
+        // get the nodes
+
+        getNodes : function(){
+
+            var nodes = null;
+
+            if (this.local) {
+
+                var localNodes = dojoQuery(this.domQuery, this.domNode.parentElement);
+
+                nodes = nodes !== null ? nodes.concat(localNodes) : localNodes;
+            }
+
+            if (this.searchParents) {
+                var parentNodes = dojoQuery(this.domNode).parents(this.domQuery); 
+                nodes = nodes !== null ? nodes.concat(parentNodes) : parentNodes;
+            }
+
+            if (this.local !== true && this.searchParents !== true) {
+
+                var allNodes = dojoQuery(this.domQuery);
+                nodes = nodes !== null ? nodes.concat(allNodes) : allNodes;
+
+            }
+
+            return nodes;
+
+        },
+
         // Rerender the interface.
         _updateRendering: function (callback) {
             logger.debug(this.id + "._updateRendering");
 
 
-            var nodes = this.local ?
-                dojoQuery(this.domQuery, this.domNode.parentElement) :
-                dojoQuery(this.domQuery);
+            var nodes = this.getNodes();
 
             dojoArray.forEach(nodes, dojoLang.hitch(this, function (node) {
 

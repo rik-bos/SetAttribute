@@ -49,6 +49,7 @@
                     <description></description>
                     <attributeTypes>
                         <attributeType name="String" />
+                        <attributeType name="Enum" />
                     </attributeTypes>
                 </property>
                 

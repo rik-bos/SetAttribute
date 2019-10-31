@@ -166,6 +166,21 @@ define([
                 });
 
                 this._handles = [objectHandle];
+
+                // Add subscriptions for configured attributes
+                dojoArray.forEach(this.attributes, dojoLang.hitch(this, function (attribute) {
+	                if (attribute.useDynamicValue && attribute.dynamicValue) {
+                        var attrHandle = mx.data.subscribe({
+                            guid: this._contextObj.getGuid(),
+                            attr: attribute.dynamicValue,
+                            callback: dojoLang.hitch(this, function (guid, attr, attrValue) {
+                                this._updateRendering();
+                            })
+                        });
+
+                        this._handles.push(attrHandle);
+                    }
+                }));
             }
         }
     });

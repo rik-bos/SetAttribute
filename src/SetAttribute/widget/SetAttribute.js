@@ -36,10 +36,9 @@ define([
 
     "dojo/query",
     "dojo/dom-attr",
-    "dojo/NodeList-traverse"
+    "dojo/NodeList-traverse",
 ], function (declare, _WidgetBase, _TemplatedMixin, dojoArray, dojoLang, dojoQuery, dojoAttr) {
     "use strict";
-
 
     // Declare widget's prototype.
     return declare("SetAttribute.widget.SetAttribute", [_WidgetBase], {
@@ -57,20 +56,20 @@ define([
 
         // dojo.declare.constructor is called to construct the widget instance. Implement to initialize non-primitive properties.
         constructor: function () {
-            logger.debug(this.id + ".constructor");
+            mx.logger.debug(this.id + ".constructor");
             this._handles = [];
         },
 
         // dijit._WidgetBase.postCreate is called after constructing the widget. Implement to do extra setup work.
         postCreate: function () {
-            logger.debug(this.id + ".postCreate");
+            mx.logger.debug(this.id + ".postCreate");
 
             this._updateRendering();
         },
 
         // mxui.widget._WidgetBase.update is called when context is changed or initialized. Implement to re-render and / or fetch data.
         update: function (obj, callback) {
-            logger.debug(this.id + ".update");
+            mx.logger.debug(this.id + ".update");
             // Hello World
             this._contextObj = obj;
             this._resetSubscriptions();
@@ -79,66 +78,64 @@ define([
 
         // get the nodes
 
-        getNodes : function(){
-
+        getNodes: function () {
             var nodes = null;
 
             if (this.local) {
-
                 var localNodes = dojoQuery(this.domQuery, this.domNode.parentElement);
 
                 nodes = nodes !== null ? nodes.concat(localNodes) : localNodes;
             }
 
             if (this.searchParents) {
-                var parentNodes = dojoQuery(this.domNode).parents(this.domQuery); 
+                var parentNodes = dojoQuery(this.domNode).parents(this.domQuery);
                 nodes = nodes !== null ? nodes.concat(parentNodes) : parentNodes;
             }
 
             if (this.local !== true && this.searchParents !== true) {
-
                 var allNodes = dojoQuery(this.domQuery);
                 nodes = nodes !== null ? nodes.concat(allNodes) : allNodes;
-
             }
 
             return nodes;
-
         },
 
         // Rerender the interface.
         _updateRendering: function (callback) {
-            logger.debug(this.id + "._updateRendering");
-
+            mx.logger.debug(this.id + "._updateRendering");
 
             var nodes = this.getNodes();
 
-            dojoArray.forEach(nodes, dojoLang.hitch(this, function (node) {
-
-				dojoArray.forEach(this.attributes, dojoLang.hitch(this, function (attribute) {
-	                if (this._contextObj && attribute.useDynamicValue && attribute.dynamicValue) {
-	                    attribute.value = this._contextObj.get(attribute.dynamicValue);
-	                }
-	                if (attribute.append === true) {
-                        if (dojoAttr.has(node, attribute.attribute)) {
-                            var oldValue = dojoAttr.get(node, attribute.attribute).toString(); // added toString in case it's a JS property
-                            if (oldValue.indexOf(" " + attribute.value) === -1) {
-                                dojoAttr.set(node, attribute.attribute, oldValue + " " + attribute.value);
+            dojoArray.forEach(
+                nodes,
+                dojoLang.hitch(this, function (node) {
+                    dojoArray.forEach(
+                        this.attributes,
+                        dojoLang.hitch(this, function (attribute) {
+                            if (this._contextObj && attribute.useDynamicValue && attribute.dynamicValue) {
+                                attribute.value = this._contextObj.get(attribute.dynamicValue);
                             }
-                        } else {
-							dojoAttr.set(node, attribute.attribute, attribute.value);
-                        }
-	                } else {
-	                    dojoAttr.set(node, attribute.attribute, attribute.value);
-                	}
-                }));
-            }));
-
+                            if (attribute.append === true) {
+                                if (dojoAttr.has(node, attribute.attribute)) {
+                                    var oldValue = dojoAttr.get(node, attribute.attribute).toString(); // added toString in case it's a JS property
+                                    if (oldValue.indexOf(" " + attribute.value) === -1) {
+                                        dojoAttr.set(node, attribute.attribute, oldValue + " " + attribute.value);
+                                    }
+                                } else {
+                                    dojoAttr.set(node, attribute.attribute, attribute.value);
+                                }
+                            } else {
+                                dojoAttr.set(node, attribute.attribute, attribute.value);
+                            }
+                        })
+                    );
+                })
+            );
 
             // The callback, coming from update, needs to be executed, to let the page know it finished rendering
-			if (callback) {
-				callback();
-			}
+            if (callback) {
+                callback();
+            }
         },
 
         _unsubscribe: function () {
@@ -152,7 +149,7 @@ define([
 
         // Reset subscriptions.
         _resetSubscriptions: function () {
-            logger.debug(this.id + "._resetSubscriptions");
+            mx.logger.debug(this.id + "._resetSubscriptions");
             // Release handles on previous object, if any.
             this._unsubscribe();
 
@@ -162,12 +159,12 @@ define([
                     guid: this._contextObj.getGuid(),
                     callback: dojoLang.hitch(this, function (guid) {
                         this._updateRendering();
-                    })
+                    }),
                 });
 
                 this._handles = [objectHandle];
             }
-        }
+        },
     });
 });
 

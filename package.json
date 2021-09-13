@@ -1,6 +1,6 @@
 {
   "name": "SetAttribute",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "My brand new Mendix widget",
   "license": "Apache 2",
   "author": "Rik Bos",
@@ -32,6 +32,10 @@
     "version": "node ./node_modules/gulp/bin/gulp version",
     "icon": "node ./node_modules/gulp/bin/gulp icon",
     "folders": "node ./node_modules/gulp/bin/gulp folders",
-    "modeler": "node ./node_modules/gulp/bin/gulp modeler"
+    "modeler": "node ./node_modules/gulp/bin/gulp modeler",
+    "preinstall": "npx npm-force-resolutions"
+  },
+  "resolutions": {
+    "graceful-fs": "^4.2.4"
   }
 }
